@@ -1,0 +1,82 @@
+import { SubItem } from './menuInterfaces'; // Adjust the import path as needed
+
+export const subItems: SubItem[] = [
+  {
+    id: 1,
+    name: 'Extra Cheese',
+    extraPrice: 0.50,
+    extraCalories: 100,
+    image: 'extra_cheese.jpg',
+    itemSubcategories: ['sandwich'],
+    type: 'extra',
+  },
+  {
+    id: 2,
+    name: 'Bacon',
+    extraPrice: 1.00,
+    extraCalories: 150,
+    image: 'bacon.jpg',
+    itemSubcategories: ['sandwich'],
+    type: 'extra',
+  },
+  {
+    id: 3,
+    name: 'Cream',
+    extraPrice: 0.30,
+    extraCalories: 50,
+    image: 'cream.jpg',
+    itemSubcategories: ['coffee', 'iced coffee'],
+    type: 'extra',
+  },
+  {
+    id: 4,
+    name: 'Sugar level',
+    extraPrice: 0.0,
+    extraCalories: 0,
+    //change this later
+    image: '',
+    itemSubcategories: ['coffee', 'iced coffee'],
+    type: 'flavor',
+    options: ['Less', 'Regular','More'],
+  },
+  {
+    id: 5,
+    name: 'Size',
+    extraPrice: 0.0,
+    extraCalories: 0,
+    //change this later
+    image: '',
+    itemSubcategories: ['coffee', 'iced coffee','fountain drink' , 'shakes'],
+    type: 'flavor',
+    options: ['Small', 'Medium','Large'],
+  },
+  {
+    id: 6,
+    name: 'Nuts',
+    extraPrice: 0.50,
+    extraCalories: 100,
+    image: 'nuts.jpg',
+    itemSubcategories: ['ice cream'],
+    type: 'extra',
+  },
+  {
+    id: 7,
+    name: 'Ice Cream Flavor',
+    extraPrice: 0.00, 
+    extraCalories: 0,  
+    image: 'ice_cream_flavor.jpg',
+    itemSubcategories: ['ice cream'],
+    type: 'flavor',
+    options: ['Vanilla Swirl', 'Chocolate']
+  },
+  {
+    id: 8,
+    name: 'Tenders Flavor',
+    extraPrice: 0.00,
+    extraCalories: 0,
+    image: 'tenders_flavor.jpg',
+    itemSubcategories: ['wings'],
+    type: 'flavor',
+    options: ['None', 'Buffalo', 'BBQ'],
+  },
+];
