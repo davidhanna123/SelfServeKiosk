@@ -3,13 +3,16 @@ import { useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CreateCard from './CreateCard';
-import { MenuItem } from '../data/menuInterfaces';
+import ItemDialog from './ItemDialog';
+import { MenuItem, SubItem } from '../data/menuInterfaces';
 import {beef} from '../data/beef';
 import {chicken} from '../data/chicken';
 import {dessert} from '../data/dessert';
 import {drinks} from '../data/drinks';
 import {sides} from '../data/sides';
 import { condiments } from '../data/condiments';
+
+import { subItems } from '../data/subItems';
 
 interface OrderPageMainProps {
   selectedCategory: string | null;
@@ -78,8 +81,12 @@ const OrderPageMain: React.FC<OrderPageMainProps> = ({ selectedCategory }) => {
               </Grid>
             ))}
           </Grid>
-          {/* Dialog component will be rendered here */}
           
+          <ItemDialog
+            open={dialogOpen}
+            selectedItem={selectedItem}
+            onClose={handleCloseDialog}
+          />
         </Box>
       )}
     </OrderPageMainContainer>
