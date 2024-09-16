@@ -12,7 +12,7 @@ import {drinks} from '../data/drinks';
 import {sides} from '../data/sides';
 import { condiments } from '../data/condiments';
 
-import { subItems } from '../data/subItems';
+
 
 interface OrderPageMainProps {
   selectedCategory: string | null;
