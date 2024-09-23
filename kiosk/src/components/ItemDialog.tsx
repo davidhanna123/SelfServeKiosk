@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -97,12 +97,20 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
       name: selectedItem.name,
       price: totalPrice,
       calories,
-      notes, // Make sure this passes the right notes
-      quantity: 1, // Add initial quantity of 1
+      notes,
+      quantity: 1,
     });
 
     onClose();
   };
+
+  // Check if all flavor options have been selected
+  const flavorOptionsFilled = Object.keys(groupedSubItems).every((type) => {
+    if (type === 'flavor') {
+      return groupedSubItems[type].every((subItem) => selectedOptions[subItem.id]);
+    }
+    return true;
+  });
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
@@ -153,7 +161,12 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         <Button onClick={onClose} color="primary">
           Close
         </Button>
-        <Button onClick={handleAddToCart} color="primary" variant="contained">
+        <Button
+          onClick={handleAddToCart}
+          color="primary"
+          variant="contained"
+          disabled={!flavorOptionsFilled} // Disable if not all flavor options are selected
+        >
           Add to Cart
         </Button>
       </DialogActions>
@@ -162,4 +175,3 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
 };
 
 export default ItemDialog;
-
