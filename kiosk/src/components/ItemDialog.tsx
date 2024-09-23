@@ -8,11 +8,11 @@ import {
   Typography,
   Box
 } from '@mui/material';
-
 import { MenuItem, SubItem } from '../data/menuInterfaces';
 import { subItems } from '../data/subItems';
 import FlavorOption from './FlavorOption';
 import ExtraOption from './ExtraOption';
+import { useCart } from '../context/CartContext';
 
 interface ItemDialogProps {
   open: boolean;
@@ -23,15 +23,14 @@ interface ItemDialogProps {
 const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) => {
   const [selectedOptions, setSelectedOptions] = useState<Record<number, string>>({});
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
+  const { addItemToCart } = useCart();
 
   if (!selectedItem) return null;
 
-  // Filter subItems based on whether they match the selected item's subcategory
   const matchingSubItems = subItems.filter((subItem: SubItem) =>
     subItem.itemSubcategories.includes(selectedItem.subcategory)
   );
 
-  // Group subItems by type
   const groupedSubItems = matchingSubItems.reduce((acc: Record<string, SubItem[]>, subItem) => {
     if (!acc[subItem.type]) {
       acc[subItem.type] = [];
@@ -40,7 +39,6 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     return acc;
   }, {});
 
-  // Calculate the total extra price
   const calculateExtraPrice = () => {
     return Array.from(selectedExtras).reduce((total, extraId) => {
       const extra = subItems.find((item) => item.id === extraId);
@@ -48,15 +46,13 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     }, 0);
   };
 
-   // Calculate the total extra calories
-   const calculateExtraCalories = () => {
+  const calculateExtraCalories = () => {
     return Array.from(selectedExtras).reduce((total, extraId) => {
       const extra = subItems.find((item) => item.id === extraId);
       return extra ? total + (extra.extraCalories || 0) : total;
     }, 0);
   };
 
-  // Handle option change for flavors
   const handleOptionChange = (id: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOptions({
       ...selectedOptions,
@@ -64,7 +60,6 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     });
   };
 
-  // Handle adding an extra
   const handleExtraClick = (id: number) => () => {
     setSelectedExtras((prevExtras) => {
       const newExtras = new Set(prevExtras);
@@ -73,7 +68,6 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     });
   };
 
-  // Handle removing an extra
   const handleRemoveExtra = (id: number) => () => {
     setSelectedExtras((prevExtras) => {
       const newExtras = new Set(prevExtras);
@@ -82,9 +76,34 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     });
   };
 
-  // Display price with extras
   const totalPrice = selectedItem.price + calculateExtraPrice();
-  const calories = selectedItem.calories+ calculateExtraCalories();
+  const calories = selectedItem.calories + calculateExtraCalories();
+
+  const handleAddToCart = () => {
+    const notes = Object.entries(selectedOptions)
+      .map(([id, value]) => {
+        const subItem = subItems.find(item => item.id === Number(id));
+        return subItem ? `${subItem.name}: ${value}` : '';
+      })
+      .concat(Array.from(selectedExtras).map(extraId => {
+        const extra = subItems.find(item => item.id === extraId);
+        return extra ? extra.name : '';
+      }))
+      .filter(note => note)
+      .join(', ');
+
+    addItemToCart({
+      id: selectedItem.id.toString(),
+      name: selectedItem.name,
+      price: totalPrice,
+      calories,
+      notes, // Make sure this passes the right notes
+      quantity: 1, // Add initial quantity of 1
+    });
+
+    onClose();
+  };
+
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>{selectedItem.name}</DialogTitle>
@@ -99,7 +118,6 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
           Calories: {calories}
         </Typography>
 
-        {/* Display grouped subItems */}
         {Object.keys(groupedSubItems).map((type) => (
           <Box key={type} marginBottom="16px">
             <Typography variant="h6" gutterBottom>
@@ -135,7 +153,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         <Button onClick={onClose} color="primary">
           Close
         </Button>
-        <Button onClick={() => { /* Handle Add to Cart logic here */ }} color="primary" variant="contained">
+        <Button onClick={handleAddToCart} color="primary" variant="contained">
           Add to Cart
         </Button>
       </DialogActions>
@@ -144,3 +162,4 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
 };
 
 export default ItemDialog;
+
