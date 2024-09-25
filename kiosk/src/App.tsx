@@ -9,10 +9,11 @@ import OrderPage from './pages/OrderPage'
 import PaymentPage from './pages/PaymentPage'
 
 import { CartProvider } from './context/CartContext';
-
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
     <CartProvider>
     <BrowserRouter>
       <div className="App">
@@ -30,6 +31,7 @@ function App() {
       </div>
     </BrowserRouter>
     </CartProvider>
+    </AuthProvider>
   );
 }
 

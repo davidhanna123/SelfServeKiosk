@@ -1,5 +1,9 @@
-import express from 'express';
 
+import express from 'express';
+import http from "http";
+import bodyParser from 'body-parser';
+import cookieParser from "cookie-parser";
+import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -7,38 +11,31 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-
 const app = express();
-const port = process.env.PORT || 5000;
-//change uri later
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:5173/mydatabase';
+app.use(cors({
+  credentials: true,
+}));
+app.use(compression());
+app.use(cookieParser());
+app.use(bodyParser.json());
+const server = http.createServer(app);
 
 
-app.use(cors());
-app.use(express.json());
+
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.Promise = Promise;
+mongoose.connect(mongoURI);
+
+mongoose.connect(mongoURI)
+    .then(() => console.log('MongoDB connected successfully'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 
-mongoose
-  .connect(mongoURI)
-  .then(() => {
-    console.log('MongoDB connected successfully');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
-
-// Use the auth routes import routes folder
-//app.use('/auth', authRoutes);
-
-// Root route
-app.get('/', (req, res) => {
-  res.send('API is running...');
+server.listen(8080, () => {
+  console.log(`Server running on port http://localhost:8080/`);
 });
 
 
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
 
 

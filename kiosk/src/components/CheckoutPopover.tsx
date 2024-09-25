@@ -42,7 +42,7 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
       }}
     >
       <Box sx={{ padding: '20px', height: '100%' }}>
-        {/* Popover content */}
+       
         <Typography variant="h6" component="div">
           Are you sure?
         </Typography>

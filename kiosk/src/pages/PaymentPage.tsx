@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Box, Typography } from '@mui/material';
 import PaymentDialog from '../components/PaymentDialog';
 import CounterDialog from '../components/CounterDialog';
-
+import { useCart } from '../context/CartContext';
 const PaymentPage = () => {
   const total: number = 99.99;
   const [selection, setSelection] = useState<'dineIn' | 'takeOut' | null>(null);
