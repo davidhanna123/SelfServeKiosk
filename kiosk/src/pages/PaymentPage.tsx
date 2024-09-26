@@ -6,7 +6,10 @@ import PaymentDialog from '../components/PaymentDialog';
 import CounterDialog from '../components/CounterDialog';
 import { useCart } from '../context/CartContext';
 const PaymentPage = () => {
-  const total: number = 99.99;
+  const { cartItems } = useCart();
+  
+  // Calculate total price dynamically based on cart items
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const [selection, setSelection] = useState<'dineIn' | 'takeOut' | null>(null);
   const [dialogType, setDialogType] = useState<'payment' | 'counter' | null>(null);
 

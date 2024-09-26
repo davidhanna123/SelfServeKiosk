@@ -7,9 +7,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close'; 
+import axios from 'axios';
 import { useState } from 'react';
-import { handleLogin } from '../handlers/loginHandler';
-import { handleSignup } from '../handlers/signupHandler';
+
 
 interface DialogPropsInterface {
     
@@ -17,6 +17,8 @@ interface DialogPropsInterface {
     closeFunction: () => void;
     
   }
+
+const API_BASE_URL = 'http://localhost:3001/auth'; // Replace with your API URL
 function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
 
     const [username, setUsername] = useState<string>('');
@@ -48,18 +50,46 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
             hasError =true;
         }
         //if not empty then proceed 
+
+        if (username && (username.length < 3 || username.length > 20)) {
+            setUsernameErrorMessage('Username must be between 3 and 20 characters');
+            setShowUsernameError(true);
+            hasError = true;
+          }
+      
+          if (password && (password.length < 3 || password.length > 20)) {
+            setPasswordErrorMessage('Password must be between 3 and 20 characters');
+            setShowPasswordError(true);
+            hasError = true;
+          }
+      
         if (!hasError){
-            //check if:
-            // user and pass are between 3-20 chars
+            
 
             if (isLoginMode){
-                // check username and password match for a given username
-                handleLogin(username, password);
+                try {
+                    const response = await axios.post(`${API_BASE_URL}/login`, { username, password }, { withCredentials: true });
+                    
+                    if (response.status === 200) {
+                        console.log('Login successful');
+                        // Handle successful signin (e.g., update state, navigate)
+                    }
+                  } catch (error) {
+                        console.error('Login failed:', error);
+                  }
             }
             //if its a signup
             else{
-               //make sure username does not already exist
-                handleSignup(username, password);
+                try {
+                    const response = await axios.post(`${API_BASE_URL}/signup`, { username, password }, { withCredentials: true });
+                    
+                    if (response.status === 201) {
+                        console.log('Signup successful');
+                        // Handle successful signin (e.g., update state, navigate)
+                    }
+                  } catch (error) {
+                        console.error('Signup failed:', error);
+                  }
             }
             //add later if success then update app state for the user and move to next page
         }

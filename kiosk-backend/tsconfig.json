@@ -6,6 +6,8 @@
     "outDir": "dist", 
     "sourceMap": true,   
     "noImplicitAny": true, 
+    "esModuleInterop": true, //added for bcrypt maybe remove later
+    "allowSyntheticDefaultImports": true, //added for bcrypt maybe remove later
   },
   "include": ["src/**/*"],  
 }
