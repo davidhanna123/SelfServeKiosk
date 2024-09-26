@@ -7,9 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close'; 
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
-
+import { useAuth } from '../context/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
 
 interface DialogPropsInterface {
     
@@ -17,6 +18,9 @@ interface DialogPropsInterface {
     closeFunction: () => void;
     
   }
+  interface ErrorResponse {
+    error: string; 
+}
 
 const API_BASE_URL = 'http://localhost:3001/auth'; // Replace with your API URL
 function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
@@ -30,7 +34,8 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
     const [showPasswordError, setShowPasswordError] = useState(false);
     const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-
+    const {login} = useAuth();
+    const navigate = useNavigate();
     const toggleMode = () => {
         setIsLoginMode(!isLoginMode);
     };
@@ -63,35 +68,49 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
             hasError = true;
           }
       
-        if (!hasError){
-            
-
-            if (isLoginMode){
-                try {
+          if (!hasError) {
+            try {
+                if (isLoginMode) {
+                    // Handle Login
                     const response = await axios.post(`${API_BASE_URL}/login`, { username, password }, { withCredentials: true });
-                    
+    
                     if (response.status === 200) {
                         console.log('Login successful');
-                        // Handle successful signin (e.g., update state, navigate)
+                        login(username);
+                        navigate('/OrderPage');
+                        // Handle successful login (e.g., update state, navigate)
                     }
-                  } catch (error) {
-                        console.error('Login failed:', error);
-                  }
-            }
-            //if its a signup
-            else{
-                try {
+                } else {
+                    // Handle Signup
                     const response = await axios.post(`${API_BASE_URL}/signup`, { username, password }, { withCredentials: true });
-                    
+    
                     if (response.status === 201) {
                         console.log('Signup successful');
-                        // Handle successful signin (e.g., update state, navigate)
+                        login(username);
+                        navigate('/OrderPage');
+                        // Handle successful signup (e.g., update state, navigate)
                     }
-                  } catch (error) {
-                        console.error('Signup failed:', error);
-                  }
+                }
+            } catch (error) {
+                const axiosError = error as AxiosError<ErrorResponse>; // Type assertion here
+            if (axiosError.response) {
+                // Handle specific error messages from the backend
+                if (axiosError.response.status === 400) {
+                    const errorMessage = axiosError.response.data.error || 'An error occurred';
+                    if (isLoginMode) {
+                        setPasswordErrorMessage(errorMessage);
+                        setShowPasswordError(true);
+                    } else {
+                        setUsernameErrorMessage(errorMessage);
+                        setShowUsernameError(true);
+                    }
+                } else {
+                    console.error('Authentication failed:', axiosError.response.data.error);
+                }
+            } else {
+                console.error('Authentication failed:', axiosError.message);
             }
-            //add later if success then update app state for the user and move to next page
+            }
         }
         
 

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import CartPopover from './CartPopover';
 import CheckoutPopover from './CheckoutPopover';
+import { useAuth } from '../context/AuthContext';
 
 const BottomBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [checkoutAnchorEl, setCheckoutAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const { isLoggedIn, username } = useAuth();
 
   const handleCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -29,8 +31,8 @@ const BottomBar: React.FC = () => {
     <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right' }}>
-          <Typography variant="h6" component="div">
-            Footer
+        <Typography variant="h6" component="div">
+            {isLoggedIn ? `Welcome, ${username}` : 'Footer'} 
           </Typography>
         </Box>
         
