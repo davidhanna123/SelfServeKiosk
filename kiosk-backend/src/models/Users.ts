@@ -17,7 +17,7 @@ const userSchema = new Schema(
       unique: false,
       trim: false,
       minlength: 3,
-      maxlength: 20,
+      
     },
     points: {
       type: Number, 

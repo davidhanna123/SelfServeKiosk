@@ -16,8 +16,9 @@ dotenv.config();
 const app = express();
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3001' // Replace with your frontend's URL
+  origin: 'http://localhost:5173' // Replace with your frontend's URL
 }));
+app.use(express.json());
 //app.use(compression());
 //app.use(cookieParser());
 //app.use(bodyParser.json());

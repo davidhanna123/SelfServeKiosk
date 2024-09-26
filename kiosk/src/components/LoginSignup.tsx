@@ -43,6 +43,7 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
        
         //first check to make sure none are empty 
         e.preventDefault();
+        console.log("Form submitted"); // Add this line
         let hasError = false;
         if (!username) {
             setUsernameErrorMessage('Username cannot be empty');
@@ -60,15 +61,15 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
             setUsernameErrorMessage('Username must be between 3 and 20 characters');
             setShowUsernameError(true);
             hasError = true;
-          }
+        }
       
-          if (password && (password.length < 3 || password.length > 20)) {
+        if (password && (password.length < 3 || password.length > 20)) {
             setPasswordErrorMessage('Password must be between 3 and 20 characters');
             setShowPasswordError(true);
             hasError = true;
-          }
+        }
       
-          if (!hasError) {
+        if (!hasError) {
             try {
                 if (isLoginMode) {
                     // Handle Login
