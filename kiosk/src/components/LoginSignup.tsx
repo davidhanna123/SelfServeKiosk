@@ -79,7 +79,8 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
                         console.log('Login successful');
                         login(username);
                         navigate('/OrderPage');
-                        // Handle successful login (e.g., update state, navigate)
+                        closeFunction();
+                        //successful login 
                     }
                 } else {
                     // Handle Signup
@@ -89,7 +90,8 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
                         console.log('Signup successful');
                         login(username);
                         navigate('/OrderPage');
-                        // Handle successful signup (e.g., update state, navigate)
+                        closeFunction();
+                        //successful signup 
                     }
                 }
             } catch (error) {

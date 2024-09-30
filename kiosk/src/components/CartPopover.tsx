@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Popover,
@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface CartPopoverProps {
   anchorEl: HTMLButtonElement | null;
@@ -22,23 +23,31 @@ interface CartPopoverProps {
 }
 
 const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }) => {
-  const { cartItems, removeItemFromCart } = useCart();
-
-  // total price considering quantity
-  const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  // total calories considering quantity
-  const calculateTotalCalories = () => {
-    return cartItems.reduce((total, item) => total + item.calories * item.quantity, 0);
-  };
+  const { cartItems, removeItemFromCart, calculateTotalPrice, calculateTotalCalories } = useCart();
 
   const totalPrice = calculateTotalPrice();
   const totalCalories = calculateTotalCalories();
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleRemoveItem = (id: string, notes: string) => {
     removeItemFromCart(id, notes); // Remove item by id and notes
+  };
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (totalPrice > 0) {
+      onClose();
+      navigate('/PaymentPage'); 
+    }
+    else{
+      setErrorMessage('Please add more items to cart');
+    }
+  };
+
+  const handlePopoverClose = () => {
+    setErrorMessage(''); 
+    onClose(); 
   };
 
   return (
@@ -46,7 +55,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
       id={id}
       open={open}
       anchorEl={anchorEl}
-      onClose={onClose}
+      onClose={handlePopoverClose}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'left',
@@ -107,10 +116,17 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
               </Typography>
             </Box>
 
-            <Box mt={2} display="flex" justifyContent="flex-end">
-              <Button onClick={onClose} variant="contained" color="primary">
+            <Box mt={2} display="flex" justifyContent="flex-end" >
+              <Button onClick={handleCheckout} variant="contained" color="primary">
                 Checkout
               </Button>
+            </Box>
+            <Box mt={2} display="flex" justifyContent="flex-end" >
+              {errorMessage && (
+              <Typography color="error" variant="body2" sx={{ marginRight: '8px' }}>
+              {errorMessage}
+              </Typography>
+              )}
             </Box>
           </>
         )}

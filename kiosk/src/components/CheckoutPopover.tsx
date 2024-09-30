@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Popover, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 interface CheckoutPopoverProps {
   anchorEl: HTMLButtonElement | null;
   open: boolean;
@@ -9,13 +10,25 @@ interface CheckoutPopoverProps {
 }
 
 const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClose, id }) => {
-
-    const navigate = useNavigate();  
+  const { cartItems,calculateTotalPrice } = useCart();
+  const navigate = useNavigate();  
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handlePayNowClick = () => {
-    onClose();
-    navigate('/PaymentPage');
+    const totalPrice = calculateTotalPrice();
+    if (totalPrice > 0) {
+      navigate('/PaymentPage');  
+      onClose();
+    } else {
+      setErrorMessage('Please add more items to cart');
+      console.log('Cart is empty, cannot proceed to checkout.');
+    }
+   
     
+  };
+  const handlePopoverClose = () => {
+    setErrorMessage(''); 
+    onClose(); 
   };
 
   return (
@@ -23,7 +36,7 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
       id={id}
       open={open}
       anchorEl={anchorEl}
-      onClose={onClose}
+      onClose={handlePopoverClose}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'left',
@@ -34,10 +47,10 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
       }}
       PaperProps={{
         sx: {
-          width: '20vw', // Flexible width
-          maxWidth: '1100px', // Maximum width
-          height: '30vh', // Flexible height
-          maxHeight: '550px', // Maximum height
+          width: '20vw', 
+          maxWidth: '1100px', 
+          height: '30vh', 
+          maxHeight: '550px', 
         },
       }}
     >
@@ -57,12 +70,17 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
             marginTop: '16px',
           }}
         >
-          <Button variant="contained" color="primary" onClick={onClose}>
+          <Button variant="contained" color="primary" onClick={ handlePopoverClose}>
             Order More
           </Button>
           <Button variant="contained" color="primary" onClick={handlePayNowClick}>
             Pay Now
           </Button>
+          {errorMessage && (
+            <Typography color="error" variant="body2" sx={{ marginTop: '8px' }}>
+              {errorMessage}
+            </Typography>
+          )}
         </Box>
       </Box>
     </Popover>

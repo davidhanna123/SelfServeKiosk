@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { useAuth } from '../context/AuthContext';
+import LoginSignup from './LoginSignup';
 
 const NavBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false); // Example state
-  // get app state later 
+  
+  const { isLoggedIn, username, login, logout } = useAuth();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const handleAuthAction = () => {
+    if (isLoggedIn) {
+      logout(); // Call logout when the user is logged in
+    } else {
+      setIsDialogOpen(true);
+    }
+  };
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false); // Close the dialog
+  };
+  
 
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -23,11 +38,12 @@ const NavBar = () => {
         
         {/* Button aligned to the right */}
         <Box>
-          <Button color="inherit" onClick={() => setIsLoggedIn(!isLoggedIn)}>
+          <Button color="inherit"  onClick={handleAuthAction}>
             {isLoggedIn ? 'Sign Out' : 'Log In / Sign Up'}
           </Button>
         </Box>
       </Toolbar>
+      <LoginSignup isOpen={isDialogOpen} closeFunction={handleCloseDialog} />
     </AppBar>
   );
 };

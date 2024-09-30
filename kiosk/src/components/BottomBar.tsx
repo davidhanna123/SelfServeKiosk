@@ -32,7 +32,7 @@ const BottomBar: React.FC = () => {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right' }}>
         <Typography variant="h6" component="div">
-            {isLoggedIn ? `Welcome, ${username}` : 'Footer'} 
+            {isLoggedIn ? `Welcome, ${username}` : 'Log in to earn points!'} 
           </Typography>
         </Box>
         

@@ -13,8 +13,9 @@ interface CartContextProps {
   cartItems: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: string, notes: string) => void; 
+  calculateTotalPrice: () => number; 
+  calculateTotalCalories: () => number; 
 }
-
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -43,9 +44,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const removeItemFromCart = (id: string, notes: string) => {
     setCartItems(prevCart => prevCart.filter(item => !(item.id === id && item.notes === notes)));
   };
-
+  const calculateTotalPrice = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+  
+  const calculateTotalCalories = () => {
+    return cartItems.reduce((total, item) => total + item.calories * item.quantity, 0);
+  };
   return (
-    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart }}>
+    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart, calculateTotalPrice, calculateTotalCalories  }}>
       {children}
     </CartContext.Provider>
   );
