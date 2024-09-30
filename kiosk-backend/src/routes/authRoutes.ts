@@ -53,5 +53,49 @@ router.post('/login', async (req, res) => {
         return res.status(500).json({ error: 'Server error' });
   }
 });
+//get points
+router.get('/points/:username', async (req, res) => {
+  const { username } = req.params;
 
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({ points: user.points });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Update Points
+// Update Points
+router.put('/points/:username', async (req, res) => {
+  const { username } = req.params;
+  const { points } = req.body;
+
+  if (typeof points !== 'number') {
+    return res.status(400).json({ error: 'Points must be a number' });
+  }
+
+  try {
+    
+    const user = await User.findOneAndUpdate(
+      { username },
+      { $inc: { points } }, 
+      { new: true, runValidators: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({ message: 'Points updated successfully', points: user.points });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+});
 export default router;

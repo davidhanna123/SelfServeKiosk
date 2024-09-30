@@ -15,6 +15,7 @@ interface CartContextProps {
   removeItemFromCart: (id: string, notes: string) => void; 
   calculateTotalPrice: () => number; 
   calculateTotalCalories: () => number; 
+  clearCart: () => void;
 }
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
@@ -51,8 +52,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const calculateTotalCalories = () => {
     return cartItems.reduce((total, item) => total + item.calories * item.quantity, 0);
   };
+
+  const clearCart = () => {
+    setCartItems([]); 
+  };
   return (
-    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart, calculateTotalPrice, calculateTotalCalories  }}>
+    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart, calculateTotalPrice, calculateTotalCalories, clearCart }}>
       {children}
     </CartContext.Provider>
   );

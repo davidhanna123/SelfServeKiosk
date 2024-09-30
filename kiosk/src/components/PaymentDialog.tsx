@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogActions, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { keyframes } from '@mui/system';
+import axios, { AxiosError } from 'axios';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 interface PaymentDialogProps {
   open: boolean;
@@ -9,31 +12,68 @@ interface PaymentDialogProps {
   total: number;
 }
 
-// Keyframes for blinking dots animation
+// blinking dots animation
 const blink = keyframes`
   0% { opacity: 1; }
   50% { opacity: 0; }
   100% { opacity: 1; }
 `;
-
+const API_BASE_URL = 'http://localhost:3001/auth';
 const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose, total }) => {
   const [buttonText, setButtonText] = useState('Pay Now');
   const [message, setMessage] = useState(`Your total is: $${total.toFixed(2)}`);
-  const [isProcessing, setIsProcessing] = useState(false); // State to track payment processing
+  const [isProcessing, setIsProcessing] = useState(false); 
   const navigate = useNavigate();
-  const pointsEarned = Math.floor(total) * 100;
+  const newPoints = Math.floor(total) * 100;
+  const { isLoggedIn, username,logout } = useAuth();
+  const { clearCart } = useCart ();
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(`${API_BASE_URL}/points/${username}`, { points: newPoints });
+      
+      
+      if (response.status === 200) {
+        console.log('Points updated successfully:', response.data.message);
+        setMessage(`You earned ${newPoints} points today!`); 
+
+      } else if (response.status === 400) {
+        console.error('Bad request:', response.data.error);
+      } else if (response.status === 404) {
+        console.error('User not found:', response.data.error);
+      } else {
+        console.error('Unexpected response status:', response.status);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+       
+        console.error('Error updating points:', error.response?.data?.error || error.message);
+      } else {
+        
+        console.error('Unexpected error:', error);
+      }
+    }
+  };
 
   const handlePayment = () => {
-    if (isProcessing) return; // Prevent action if already processing
+    if (isProcessing) return; 
 
-    setIsProcessing(true); // Set processing state to true
+    setIsProcessing(true); 
     setButtonText('Authorizing');
     setTimeout(() => {
       setButtonText('Transaction Completed');
-      setMessage(''); // Clear the initial message
+      setMessage(''); 
       setTimeout(() => {
-        setMessage(`You earned ${pointsEarned} points today!`); // only if user logged in, (state)
+        if (isLoggedIn){
+          handleUpdate();
+          
+        }
+        else{
+          setMessage(`log in to earn points!`); 
+        }
         setTimeout(() => {
+          logout();
+          clearCart();
+          //clear all context stuff here
           navigate('/'); 
         }, 4000); // main page redirect delay
       }, 2000); // points earned message delay

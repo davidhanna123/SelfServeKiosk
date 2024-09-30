@@ -1,19 +1,17 @@
-//need to tweak
-
 import React, { useState } from 'react';
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box, Typography, List, ListItem, ListItemText, Divider } from '@mui/material';
 import PaymentDialog from '../components/PaymentDialog';
 import CounterDialog from '../components/CounterDialog';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+
 const PaymentPage = () => {
-  const { cartItems } = useCart();
-  
-  // Calculate total price dynamically based on cart items
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const { cartItems, calculateTotalPrice } = useCart();
+  const totalPrice = calculateTotalPrice();
   const [selection, setSelection] = useState<'dineIn' | 'takeOut' | null>(null);
   const [dialogType, setDialogType] = useState<'payment' | 'counter' | null>(null);
+  const { isLoggedIn, username } = useAuth();
 
-  
   const handleOpenPaymentDialog = () => {
     setDialogType('payment');
   };
@@ -34,15 +32,51 @@ const PaymentPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh', // Make sure it takes full viewport height
+        height: '100vh', // Full viewport height
         textAlign: 'center',
       }}
     >
       <Typography variant="h4" gutterBottom>
-        Total is: ${total.toFixed(2)}
+        {isLoggedIn ? `Hello, ${username}! You are earning points today.` : 'Your order:'}
       </Typography>
 
-      {/* Dine In and Take Out buttons */}
+      
+      <Box
+        sx={{
+          width: '400px',
+          height: '300px',
+          backgroundColor: 'grey',
+          display: 'flex',
+          flexDirection: 'column',
+          borderRadius: '8px', 
+          overflow: 'hidden', // Prevent overflow in parent Box
+        }}
+      >
+        <List sx={{ overflowY: 'auto', flexGrow: 1 }}> 
+          {cartItems.map((item, index) => (
+            <React.Fragment key={item.id}>
+              <ListItem>
+                <ListItemText
+                primary={`${item.name}${item.quantity > 1 ? ` (x${item.quantity})` : ''}`} 
+                secondary={`${item.notes ? `Notes: ${item.notes}, ` : ''}
+                Price: $${(item.price * item.quantity).toFixed(2)}`} 
+                />
+              </ListItem>
+              {index < cartItems.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+        </List>
+
+        
+        <Box textAlign="right" sx={{ padding: 1 }}> 
+          <Divider />
+          <Typography variant="h6" gutterBottom>
+            Total: ${totalPrice.toFixed(2)}
+          </Typography>
+        </Box>
+      </Box>
+
+     
       <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
         <Button variant="contained" onClick={() => setSelection('dineIn')}>
           Dine In
@@ -52,7 +86,7 @@ const PaymentPage = () => {
         </Button>
       </Box>
 
-      {/* Conditional rendering of payment options */}
+      
       {selection && (
         <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
           <Button variant="contained" onClick={handleOpenPaymentDialog}>
@@ -64,9 +98,9 @@ const PaymentPage = () => {
         </Box>
       )}
 
-      {/* Conditional rendering of dialogs */}
+      
       {dialogType === 'payment' && (
-        <PaymentDialog open={dialogType === 'payment'} onClose={handleCloseDialog} total={total} />
+        <PaymentDialog open={dialogType === 'payment'} onClose={handleCloseDialog} total={totalPrice} />
       )}
       {dialogType === 'counter' && (
         <CounterDialog open={dialogType === 'counter'} />
