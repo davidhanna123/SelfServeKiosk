@@ -80,16 +80,16 @@ const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose, total }) =
     }, 2000); // authorization delay
   };
 
-  // Prevent closing the dialog by clicking outside or pressing escape
+  
   const handleBackdropClick = (event: React.SyntheticEvent) => {
-    event.stopPropagation(); // Prevent event from propagating to parent handlers
+    event.stopPropagation(); 
   };
 
   useEffect(() => {
     if (open) {
       setButtonText('Pay Now');
       setMessage(`Your total is: $${total.toFixed(2)}`);
-      setIsProcessing(false); // Reset processing state when dialog opens
+      setIsProcessing(false); 
     }
   }, [open, total]);
 
@@ -117,7 +117,7 @@ const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose, total }) =
         )}
         <Button
           onClick={handlePayment}
-          disabled={isProcessing} // Disable the button while processing
+          disabled={isProcessing} 
           sx={{
             minWidth: '120px',
             '&::after': {

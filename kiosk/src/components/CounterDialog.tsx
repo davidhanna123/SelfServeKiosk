@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Dialog, DialogContent, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
-// Function to generate a random 3-digit order number
-const generateOrderNumber = () => Math.floor(100 + Math.random() * 900);
+
 
 interface CounterDialogProps {
   open: boolean;
@@ -11,28 +12,33 @@ interface CounterDialogProps {
 
 const CounterDialog: React.FC<CounterDialogProps> = ({ open }) => {
   const navigate = useNavigate();
-  const orderNumber = generateOrderNumber(); // Generate order number
+  const orderNumber = Math.floor(100 + Math.random() * 900);
+  const { logout } = useAuth();
+  const { clearCart } = useCart ();
 
   useEffect(() => {
     if (open) {
       // Redirect after a delay
       const timer = setTimeout(() => {
-        navigate('/'); // Redirect to the main page
-      }, 3000); // Delay 
+        logout();
+        clearCart();
+        //clear all context
+        navigate('/'); //  main page
+      }, 3000); // delay 
 
-      return () => clearTimeout(timer); // Cleanup timer on unmount
+      return () => clearTimeout(timer); 
     }
   }, [open, navigate]);
 
   return (
     <Dialog
       open={open}
-      onBackdropClick={(event) => event.stopPropagation()} // Prevent closing by clicking outside
-      disableEscapeKeyDown // Prevent closing by pressing escape key
+      onBackdropClick={(event) => event.stopPropagation()} 
+      disableEscapeKeyDown 
       sx={{
         '& .MuiDialog-paper': {
-          width: '400px',  //width
-          height: '300px', //height
+          width: '400px',  
+          height: '300px', 
         },
       }}
     >

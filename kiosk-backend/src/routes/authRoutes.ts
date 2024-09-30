@@ -70,8 +70,7 @@ router.get('/points/:username', async (req, res) => {
   }
 });
 
-// Update Points
-// Update Points
+
 router.put('/points/:username', async (req, res) => {
   const { username } = req.params;
   const { points } = req.body;

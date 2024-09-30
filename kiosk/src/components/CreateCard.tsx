@@ -6,7 +6,7 @@ import { MenuItem } from '../data/menuInterfaces';
 
 interface CreateCardProps {
   item: MenuItem;
-  onClick: (item: MenuItem) => void; // Add an onClick handler
+  onClick: (item: MenuItem) => void; 
 }
 //need to style later
 const CreateCard: React.FC<CreateCardProps> = ({ item, onClick }) => {

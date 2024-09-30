@@ -17,7 +17,7 @@ const AuthContext = createContext<AuthContextProps>({
   logout: () => {},
 });
 
-// AuthProvider component wrapper
+
 const API_BASE_URL = 'http://localhost:3001/auth';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -57,5 +57,5 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// custom hook to use the AuthContext
+
 export const useAuth = () => useContext(AuthContext);
