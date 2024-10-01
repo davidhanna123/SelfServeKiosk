@@ -18,7 +18,7 @@ import { AuthProvider } from './context/AuthContext';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Include CssBaseline here */}
+      <CssBaseline /> 
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>

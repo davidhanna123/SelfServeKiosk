@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box'; // Import Box for layout
+import Box from '@mui/material/Box'; 
 import LoginSignup from '../components/LoginSignup';
 
 const SelectPage = () => {
