@@ -43,7 +43,7 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
        
         //first check to make sure none are empty 
         e.preventDefault();
-        console.log("Form submitted"); // Add this line
+        console.log("Form submitted"); 
         let hasError = false;
         if (!username) {
             setUsernameErrorMessage('Username cannot be empty');
@@ -95,9 +95,9 @@ function LoginSignup({isOpen, closeFunction,}: DialogPropsInterface) {
                     }
                 }
             } catch (error) {
-                const axiosError = error as AxiosError<ErrorResponse>; // Type assertion here
+                const axiosError = error as AxiosError<ErrorResponse>; 
             if (axiosError.response) {
-                // Handle specific error messages from the backend
+                
                 if (axiosError.response.status === 400) {
                     const errorMessage = axiosError.response.data.error || 'An error occurred';
                     if (isLoginMode) {

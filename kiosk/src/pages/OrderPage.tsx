@@ -3,7 +3,7 @@ import Sidebar from '../components/SideBar';
 import NavBar from '../components/NavBar';
 import BottomBar from '../components/BottomBar';
 import OrderPageMain from '../components/OrderPageMain'; 
-import { MenuItem } from '../data/menuInterfaces';
+
 import { Box } from '@mui/material';
 
 

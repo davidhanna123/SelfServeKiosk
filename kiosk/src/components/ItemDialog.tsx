@@ -104,7 +104,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     onClose();
   };
 
-  // Check if all flavor options have been selected
+  // check if all flavor options have been selected
   const flavorOptionsFilled = Object.keys(groupedSubItems).every((type) => {
     if (type === 'flavor') {
       return groupedSubItems[type].every((subItem) => selectedOptions[subItem.id]);
@@ -165,7 +165,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
           onClick={handleAddToCart}
           color="primary"
           variant="contained"
-          disabled={!flavorOptionsFilled} // Disable if not all flavor options are selected
+          disabled={!flavorOptionsFilled} // all flavor options must be selected
         >
           Add to Cart
         </Button>
