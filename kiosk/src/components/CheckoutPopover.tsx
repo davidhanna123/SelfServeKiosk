@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Popover, Typography } from '@mui/material';
+import { Box, Button, Popover, Typography, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 interface CheckoutPopoverProps {
@@ -20,7 +20,7 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
       navigate('/PaymentPage');  
       onClose();
     } else {
-      setErrorMessage('Please add more items to cart');
+      setErrorMessage('Please add more items');
       console.log('Cart is empty, cannot proceed to checkout.');
     }
    
@@ -66,20 +66,20 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
             flexDirection: 'column',
             justifyContent: 'left',
             alignItems: 'flex-start',
-            gap: '16px',
-            marginTop: '16px',
+            gap: '10px',
+            marginTop: '5px',
           }}
         >
-          <Button variant="contained" color="primary" onClick={ handlePopoverClose}>
+          <Button variant="contained" color="secondary" onClick={ handlePopoverClose}>
             Order More
           </Button>
-          <Button variant="contained" color="primary" onClick={handlePayNowClick}>
+          <Button variant="contained" color="secondary" onClick={handlePayNowClick}>
             Pay Now
           </Button>
           {errorMessage && (
-            <Typography color="error" variant="body2" sx={{ marginTop: '8px' }}>
-              {errorMessage}
-            </Typography>
+             <Alert variant="filled" severity="error" >
+             {errorMessage}
+           </Alert>
           )}
         </Box>
       </Box>

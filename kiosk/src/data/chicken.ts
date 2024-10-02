@@ -11,7 +11,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'sandwich',
     price: 9.99,
     calories: 800,
-    image: 'buffalo-chicken.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-firecracker-mccrispy-1:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Ranch', 'Buffalo Sauce']
   },
   {
@@ -33,7 +33,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'sandwich',
     price: 10.99,
     calories: 900,
-    image: 'curry-chicken.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-chicken-mcgriddle:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Curry Sauce', 'Tomato']
   },
   {
@@ -79,7 +79,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'wings',
     price: 7.99,
     calories: 600,
-    image: 'nuggets.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-4-chicken-mcnuggets-1:nutrition-calculator-tile',
     toppings: ['Honey Mustard', 'BBQ Sauce']
   }
 ];

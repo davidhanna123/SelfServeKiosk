@@ -3,17 +3,26 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 import { MenuItem } from '../data/menuInterfaces'; 
-
+import noImage from '../images/No_Image_Available.jpg';
 interface CreateCardProps {
   item: MenuItem;
   onClick: (item: MenuItem) => void; 
 }
-//need to style later
+
+
+
+
 const CreateCard: React.FC<CreateCardProps> = ({ item, onClick }) => {
   return (
     <Card>
       <CardActionArea onClick={() => onClick(item)}>
         
+        <CardMedia
+          component="img"
+          height="140" // You can adjust the height as needed
+          image={item.image || noImage} // Use the item image or fallback to default
+          alt={item.name} // Optional: Add alt text for accessibility
+        />
         <CardContent>
           <Typography variant="h5" component="div">
             {item.name}

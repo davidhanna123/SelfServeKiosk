@@ -9,7 +9,7 @@ export const beef: MenuItem[] = [
     subcategory: 'sandwich',
     price: 8.99,
     calories: 750,
-    image: 'burger.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-hamburger:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Tomato', 'Pickles', 'Onions']
   },
   {
@@ -20,7 +20,7 @@ export const beef: MenuItem[] = [
     subcategory: 'sandwich',
     price: 9.49,
     calories: 850,
-    image: 'cheeseburger.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-cheeseburger-2:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Tomato', 'Pickles', 'Cheddar Cheese', 'Onions']
   },
   {
@@ -31,7 +31,7 @@ export const beef: MenuItem[] = [
     subcategory: 'sandwich',
     price: 10.99,
     calories: 1100,
-    image: 'double-cheese-burger.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-double-cheeseburger:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Tomato', 'Pickles', 'Double Cheddar Cheese', 'Onions']
   },
   {
@@ -42,7 +42,7 @@ export const beef: MenuItem[] = [
     subcategory: 'sandwich',
     price: 11.49,
     calories: 1200,
-    image: 'big-angus.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-quarter-pounder-blt:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Tomato', 'Pickles', 'Angus Beef Patty', 'Bacon', 'BBQ Sauce']
   },
   {
@@ -53,7 +53,7 @@ export const beef: MenuItem[] = [
     subcategory: 'sandwich',
     price: 10.49,
     calories: 950,
-    image: 'texas-bbq.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-quarter-pounder-cheese:nutrition-calculator-tile',
     toppings: ['Lettuce', 'Tomato', 'Pickles', 'Beef Patty', 'BBQ Sauce', 'Jalapeños']
   }
   // Add more beef items here if needed...

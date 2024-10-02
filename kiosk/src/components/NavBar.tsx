@@ -19,9 +19,10 @@ const NavBar = () => {
     setIsDialogOpen(false); // Close the dialog
   };
   
-
+ //'#000000'
+ //(theme) => theme.palette.background.default
   return (
-    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#000000' }}>
       <Toolbar
         sx={{
           display: 'flex',
@@ -38,7 +39,7 @@ const NavBar = () => {
         
         {/* Button aligned to the right */}
         <Box>
-          <Button color="inherit"  onClick={handleAuthAction}>
+          <Button color="secondary" variant='contained'  onClick={handleAuthAction}>
             {isLoggedIn ? 'Sign Out' : 'Log In / Sign Up'}
           </Button>
         </Box>

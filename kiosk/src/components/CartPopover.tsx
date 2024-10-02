@@ -117,7 +117,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
             </Box>
 
             <Box mt={2} display="flex" justifyContent="flex-end" >
-              <Button onClick={handleCheckout} variant="contained" color="primary">
+              <Button onClick={handleCheckout} variant="contained" color="secondary">
                 Checkout
               </Button>
             </Box>

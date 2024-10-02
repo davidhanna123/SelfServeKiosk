@@ -6,16 +6,34 @@ import CssBaseline from "@mui/material/CssBaseline";
 const theme = createTheme({
   palette: {
     primary: {
-      main: red[600], 
+      light: '#FF8A80',       // Light red
+    main: '#F44336',        // Bright red
+    dark: '#C62828',        // Dark red
+    contrastText: '#FFF',    // White text for contrast
     },
     secondary: {
-      main: yellow[400], 
+      light: '#FFF59D',      // Light yellow
+      main: '#FFEB3B',       // Bright yellow
+      dark: '#FBC02D',       // Dark yellow
+      contrastText: '#000',   // Black text for contrast
     },
+    
     background: {
-      default: '#211f1f', 
-      paper: '#ffffff', 
+      default: '#211f1f',  //main bg
+      paper: '#ffffff', // secondary bg
+      //tertiary: '#e0e0e0',
+      
     },
   },
+  typography: {
+    button: {
+      textTransform: 'none', // Prevents uppercase transformation
+      fontSize: '1rem', // Example size
+      fontWeight: 500, // Example weight
+      // Add more typography styles as needed
+    },
+  },
+
 });
 
 export default theme;

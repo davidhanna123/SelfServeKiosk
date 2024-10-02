@@ -158,12 +158,12 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         ))}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} sx ={{color: "#000000"}}>
           Close
         </Button>
         <Button
           onClick={handleAddToCart}
-          color="primary"
+          color="secondary"
           variant="contained"
           disabled={!flavorOptionsFilled} // all flavor options must be selected
         >

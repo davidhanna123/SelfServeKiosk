@@ -24,7 +24,7 @@ const PaymentPage = () => {
     setDialogType(null);
     setSelection(null);
   };
-
+  //edit typographies later in theme
   return (
     <Box
       sx={{
@@ -39,13 +39,13 @@ const PaymentPage = () => {
       <Typography variant="h4" gutterBottom>
         {isLoggedIn ? `Hello, ${username}! You are earning points today.` : 'Your order:'}
       </Typography>
-
+      
       
       <Box
         sx={{
           width: '400px',
           height: '300px',
-          backgroundColor: 'grey',
+          backgroundColor: (theme) => theme.palette.background.paper,
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '8px', 
@@ -78,10 +78,10 @@ const PaymentPage = () => {
 
      
       <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
-        <Button variant="contained" onClick={() => setSelection('dineIn')}>
+        <Button variant="contained" color='secondary'onClick={() => setSelection('dineIn')}>
           Dine In
         </Button>
-        <Button variant="contained" onClick={() => setSelection('takeOut')}>
+        <Button variant="contained" color='secondary' onClick={() => setSelection('takeOut')}>
           Take Out
         </Button>
       </Box>
@@ -89,10 +89,10 @@ const PaymentPage = () => {
       
       {selection && (
         <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
-          <Button variant="contained" onClick={handleOpenPaymentDialog}>
+          <Button variant="contained" color='secondary' onClick={handleOpenPaymentDialog}>
             Pay Here
           </Button>
-          <Button variant="contained" onClick={handleOpenCounterDialog}>
+          <Button variant="contained" color='secondary' onClick={handleOpenCounterDialog}>
             Pay at the Counter
           </Button>
         </Box>

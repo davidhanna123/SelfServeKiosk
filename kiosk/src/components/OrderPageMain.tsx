@@ -21,7 +21,7 @@ interface OrderPageMainProps {
 // Define a styled container for OrderPageMain
 const OrderPageMainContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
-  backgroundColor: 'lightgrey',
+  //backgroundColor: 'lightgrey',
   width: 'calc(100vw - 180px)',
   top: '64px', // NavBar height
   bottom: '64px', // BottomBar height

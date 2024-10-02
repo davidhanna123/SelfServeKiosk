@@ -28,7 +28,7 @@ const BottomBar: React.FC = () => {
   const checkoutId = checkoutOpen ? 'checkout-popover' : undefined;
 
   return (
-    <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, backgroundColor: '#000000' }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right' }}>
         <Typography variant="h6" component="div">
@@ -36,8 +36,13 @@ const BottomBar: React.FC = () => {
           </Typography>
         </Box>
         
-        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right' }}>
-          <Button color="inherit" onClick={handleCartClick}>
+        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right'}}>
+          <Button 
+          variant='contained'
+          color="secondary" 
+          onClick={handleCartClick}
+          sx={{ marginRight: 1 }}
+          >
             Cart
           </Button>
 
@@ -48,7 +53,12 @@ const BottomBar: React.FC = () => {
             id={cartId} 
           />
 
-          <Button color="inherit" onClick={handleCheckoutClick}>
+          <Button 
+          variant='contained'
+          color="secondary" 
+          onClick={handleCheckoutClick}
+          
+          >
             Check Out
           </Button>
 
