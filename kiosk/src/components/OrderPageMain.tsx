@@ -18,12 +18,12 @@ interface OrderPageMainProps {
   selectedCategory: string | null;
 }
 
-// Define a styled container for OrderPageMain
+
 const OrderPageMainContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   //backgroundColor: 'lightgrey',
   width: 'calc(100vw - 180px)',
-  top: '64px', // NavBar height
+  top: '64px', 
   bottom: '64px', // BottomBar height
   position: 'fixed', // Fix the sidebar to the left
   left: 180, // Align to the left edge of the viewport
@@ -70,7 +70,7 @@ const OrderPageMain: React.FC<OrderPageMainProps> = ({ selectedCategory }) => {
 
   return (
     <OrderPageMainContainer>
-      {/* Main content */}
+     
       {selectedCategory && (
         <Box sx={{ flexGrow: 1, padding: '16px' }}>
           

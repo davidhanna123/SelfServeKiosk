@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '@mui/material/styles'; 
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 
 interface FlavorOptionProps {
@@ -11,9 +12,13 @@ interface FlavorOptionProps {
 }
 
 const FlavorOption: React.FC<FlavorOptionProps> = ({ name, options, selectedValue, onChange }) => {
+  const theme = useTheme(); 
+
   return (
-    <FormControl component="fieldset" style={{ flexGrow: 1 }}>
-      <FormLabel component="legend">{name}</FormLabel>
+    <FormControl component="fieldset" sx={{ flexGrow: 1 }}>
+      <FormLabel component="legend" sx={{ color: theme.palette.secondary.contrastText }}> 
+        {name}
+      </FormLabel>
       <RadioGroup
         value={selectedValue}
         onChange={onChange}
@@ -23,8 +28,18 @@ const FlavorOption: React.FC<FlavorOptionProps> = ({ name, options, selectedValu
           <FormControlLabel
             key={option}
             value={option}
-            control={<Radio />}
+            control={
+              <Radio
+                sx={{
+                  color: theme.palette.secondary.contrastText, 
+                  '&.Mui-checked': {
+                    color: theme.palette.primary.dark, 
+                  },
+                }}
+              />
+            }
             label={option}
+            sx={{ color: theme.palette.secondary.contrastText }} 
           />
         ))}
       </RadioGroup>

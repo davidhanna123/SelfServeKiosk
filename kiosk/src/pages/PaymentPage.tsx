@@ -4,6 +4,7 @@ import PaymentDialog from '../components/PaymentDialog';
 import CounterDialog from '../components/CounterDialog';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '@mui/material/styles'; 
 
 const PaymentPage = () => {
   const { cartItems, calculateTotalPrice } = useCart();
@@ -11,6 +12,8 @@ const PaymentPage = () => {
   const [selection, setSelection] = useState<'dineIn' | 'takeOut' | null>(null);
   const [dialogType, setDialogType] = useState<'payment' | 'counter' | null>(null);
   const { isLoggedIn, username } = useAuth();
+
+  const theme = useTheme();
 
   const handleOpenPaymentDialog = () => {
     setDialogType('payment');
@@ -36,7 +39,7 @@ const PaymentPage = () => {
         textAlign: 'center',
       }}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" sx={{ color: theme.palette.primary.contrastText }} gutterBottom>
         {isLoggedIn ? `Hello, ${username}! You are earning points today.` : 'Your order:'}
       </Typography>
       
@@ -44,7 +47,7 @@ const PaymentPage = () => {
       <Box
         sx={{
           width: '400px',
-          height: '300px',
+          height: '500px',
           backgroundColor: (theme) => theme.palette.background.paper,
           display: 'flex',
           flexDirection: 'column',

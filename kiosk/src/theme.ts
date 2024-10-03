@@ -6,8 +6,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#FF8A80',       // Light red
-      main: '#F44336',        // Bright red
+      light: '#F44336',       // bright red
+      main: '#000',        // black
       dark: '#388E3C',        // Dark green
       contrastText: '#FFF',   // White text for contrast
     },

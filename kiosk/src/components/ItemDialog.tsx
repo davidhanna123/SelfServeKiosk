@@ -16,6 +16,7 @@ import ExtraOption from './ExtraOption';
 import { useCart } from '../context/CartContext';
 import noImage from '../images/No_Image_Available.jpg';
 
+
 interface ItemDialogProps {
   open: boolean;
   selectedItem: MenuItem | null;
@@ -116,7 +117,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     handleClose();
   };
 
-  // Check if all flavor options have been selected
+  
   const flavorOptionsFilled = Object.keys(groupedSubItems).every((type) => {
     if (type === 'flavor') {
       return groupedSubItems[type].every((subItem) => selectedOptions[subItem.id]);
@@ -130,7 +131,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     setSelectedExtras(new Set());
     onClose(); 
   };
-
+  
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" sx={{ borderRadius: 10 }}>
       <CardMedia
@@ -170,6 +171,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
                     options={subItem.options || []}
                     selectedValue={selectedOptions[subItem.id] || ''}
                     onChange={handleOptionChange(subItem.id)}
+                    
                   />
                 ) : (
                   <ExtraOption

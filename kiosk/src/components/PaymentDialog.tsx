@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogActions, Button, Typography } from '@mui/material';
+import { Box, Dialog, DialogContent, DialogActions, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { keyframes } from '@mui/system';
 import axios, { AxiosError } from 'axios';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
 
 interface PaymentDialogProps {
   open: boolean;
@@ -110,6 +111,9 @@ const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose, total }) =
         <Typography variant="h6" sx={{ transition: 'opacity 0.5s ease-in-out' }}>
           {message}
         </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 9 }}>
+          <FastfoodIcon fontSize="large" />
+        </Box>
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'center', paddingBottom: '20px' }}>
         {!isProcessing && (

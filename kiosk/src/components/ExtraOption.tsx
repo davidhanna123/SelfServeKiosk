@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 
+import { useTheme } from '@mui/material/styles'; 
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 interface ExtraOptionProps {
   name: string;
   extraPrice: number;
@@ -13,23 +14,27 @@ interface ExtraOptionProps {
   onRemove: () => void;
 }
 
-const ExtraOption: React.FC<ExtraOptionProps> = ({ name, extraPrice,extraCalories, isSelected, onAdd, onRemove }) => (
-  <Box display="flex" alignItems="center">
-    <Typography variant="body2" style={{ flexGrow: 1 }}>
-      {name}
-      {extraPrice > 0 && ` . +$${extraPrice.toFixed(2)}`}
-      {extraCalories > 0 && ` . +${extraCalories} cal`}
-    </Typography>
-    {isSelected ? (
-      <IconButton color="primary" onClick={onRemove}>
-        <RemoveIcon />
-      </IconButton>
-    ) : (
-      <IconButton color="primary" onClick={onAdd}>
-        <AddIcon />
-      </IconButton>
-    )}
-  </Box>
-);
+const ExtraOption: React.FC<ExtraOptionProps> = ({ name, extraPrice, extraCalories, isSelected, onAdd, onRemove }) => {
+  const theme = useTheme(); 
+
+  return (
+    <Box display="flex" alignItems="center">
+      <Typography variant="body2" style={{ flexGrow: 1 }}>
+        {name}
+        {extraPrice > 0 && ` . +$${extraPrice.toFixed(2)}`}
+        {extraCalories > 0 && ` . +${extraCalories} cal`}
+      </Typography>
+      {isSelected ? (
+        <IconButton sx={{ color: theme.palette.primary.light }} onClick={onRemove}>
+          <RemoveCircleIcon sx={{ fontSize: '2rem' }}/>
+        </IconButton>
+      ) : (
+        <IconButton sx={{ color: theme.palette.primary.dark }} onClick={onAdd}>
+          <AddCircleIcon sx={{ fontSize: '2rem' }}/>
+        </IconButton>
+      )}
+    </Box>
+  );
+};
 
 export default ExtraOption;
