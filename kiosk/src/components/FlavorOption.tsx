@@ -9,7 +9,7 @@ interface FlavorOptionProps {
   selectedValue: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-//maybe add extra calorie stuff later
+
 const FlavorOption: React.FC<FlavorOptionProps> = ({ name, options, selectedValue, onChange }) => {
   return (
     <FormControl component="fieldset" style={{ flexGrow: 1 }}>

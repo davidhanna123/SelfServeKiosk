@@ -27,6 +27,15 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
   const { addItemToCart } = useCart();
 
+  
+  useEffect(() => {
+    if (open) {
+      setSelectedOptions({});
+      setSelectedExtras(new Set());
+    }
+  }, [open]);
+
+  
   if (!selectedItem) return null;
 
   const matchingSubItems = subItems.filter((subItem: SubItem) =>
@@ -103,10 +112,11 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
       quantity: 1,
     });
 
-    onClose();
+    
+    handleClose();
   };
 
-  // check if all flavor options have been selected
+  // Check if all flavor options have been selected
   const flavorOptionsFilled = Object.keys(groupedSubItems).every((type) => {
     if (type === 'flavor') {
       return groupedSubItems[type].every((subItem) => selectedOptions[subItem.id]);
@@ -114,16 +124,23 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     return true;
   });
 
+  
+  const handleClose = () => {
+    setSelectedOptions({});
+    setSelectedExtras(new Set());
+    onClose(); 
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm" sx={{ borderRadius: 10 }}>
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" sx={{ borderRadius: 10 }}>
       <CardMedia
-      component="img"
-      height="200"
-      image={selectedItem.image || noImage} 
-      alt={selectedItem.name}
-      sx={{  
-        objectFit: 'contain',  
-        width: '100%' 
+        component="img"
+        height="200"
+        image={selectedItem.image || noImage} 
+        alt={selectedItem.name}
+        sx={{  
+          objectFit: 'contain',  
+          width: '100%' 
         }} 
       />
       <DialogTitle>{selectedItem.name}</DialogTitle>
@@ -170,7 +187,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         ))}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} sx ={{color: "#000000"}}>
+        <Button onClick={handleClose} sx={{ color: "#000000" }}>
           Close
         </Button>
         <Button

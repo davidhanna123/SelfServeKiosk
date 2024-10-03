@@ -33,4 +33,3 @@ const ExtraOption: React.FC<ExtraOptionProps> = ({ name, extraPrice,extraCalorie
 );
 
 export default ExtraOption;
-
