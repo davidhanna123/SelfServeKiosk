@@ -9,7 +9,7 @@ export const dessert: MenuItem[] = [
     subcategory: 'none',
     price: 2.49,
     calories: 350,
-    image: 'chocolate_brownie.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-rmhc-brownie-cookie:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -20,18 +20,18 @@ export const dessert: MenuItem[] = [
     subcategory: 'ice cream',
     price: 3.99,
     calories: 400,
-    image: 'ice_cream_sundae.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-hot-fudge-sundae:nutrition-calculator-tile',
     toppings: ['Chocolate Syrup', 'Sprinkles', 'Whipped Cream']
   },
   {
     id: 25,
-    name: 'Cone',
+    name: 'Ice Cream Cone',
     description: 'Delicious cone with your choice of ice cream flavor.',
     category: 'dessert',
     subcategory: 'ice cream',
     price: 2.49,
     calories: 250,
-    image: 'cone.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-vanilla-cone:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -42,18 +42,9 @@ export const dessert: MenuItem[] = [
     subcategory: 'none',
     price: 1.99,
     calories: 200,
-    image: 'chocolate_chip_cookie.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-rmhc-chocolate-chunk-cookie:nutrition-calculator-tile',
     toppings: []
   },
-  {
-    id: 27,
-    name: 'Sugar Cookie',
-    description: 'Sweet and buttery sugar cookie with a light crunch.',
-    category: 'dessert',
-    subcategory: 'none',
-    price: 1.79,
-    calories: 180,
-    image: 'sugar_cookie.jpg',
-    toppings: []
-  }
+  
+  
 ];

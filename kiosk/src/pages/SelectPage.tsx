@@ -44,7 +44,7 @@ const SelectPage = () => {
         >
           <Button 
             variant="contained" 
-            color="primary" 
+            color="secondary" 
             onClick={handleDialogOpen}
             sx={{ width: '50%', padding: '90px' }}
           >
@@ -52,7 +52,7 @@ const SelectPage = () => {
           </Button>
           <Button 
             variant="contained" 
-            color="primary"
+            color="secondary"
             onClick={GuestOption}
             sx={{ width: '50%', padding: '90px' }}
           >

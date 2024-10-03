@@ -16,13 +16,13 @@ export const chicken: MenuItem[] = [
   },
   {
     id: 12,
-    name: 'BBQ Chicken',
-    description: 'Grilled BBQ chicken sandwich with coleslaw.',
+    name: 'BBQ Chicken Wrap',
+    description: 'Grilled BBQ chicken wrap with coleslaw.',
     category: 'chicken',
     subcategory: 'sandwich',
     price: 10.49,
     calories: 850,
-    image: 'bbq-chicken.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-spicybuffalo-snackwrap-crispy-1:nutrition-calculator-tile',
     toppings: ['Coleslaw', 'BBQ Sauce', 'Pickles']
   },
   {
@@ -44,7 +44,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'sandwich',
     price: 9.49,
     calories: 950,
-    image: 'crispy-chicken.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-mccrispy-1:nutrition-calculator-tile',
     toppings: ['Mayo', 'Pickles']
   },
   
@@ -57,7 +57,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'wings',
     price: 8.99,
     calories: 700,
-    image: 'tenders.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcd-3pc-Chicken_Tenders--uae-1223:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: ['Choice of Sauce']
   },
   {
@@ -68,7 +68,7 @@ export const chicken: MenuItem[] = [
     subcategory: 'wings',
     price: 9.99,
     calories: 800,
-    image: 'wings.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcd-McWings-uae1223:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: ['Buffalo Sauce', 'Celery', 'Ranch']
   },
   {

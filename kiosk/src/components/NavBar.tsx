@@ -22,22 +22,22 @@ const NavBar = () => {
  //'#000000'
  //(theme) => theme.palette.background.default
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#000000' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#000000', height: '70px' }}>
       <Toolbar
         sx={{
           display: 'flex',
-          justifyContent: 'space-between', // Ensures the title and button are spaced apart
-          alignItems: 'center',
+          justifyContent: 'space-between', 
+          alignItems: 'center'
         }}
       >
-        {/* Centering title */}
+        
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
           <Typography variant="h6" component="div">
             Kiosk
           </Typography>
         </Box>
         
-        {/* Button aligned to the right */}
+       
         <Box>
           <Button color="secondary" variant='contained'  onClick={handleAuthAction}>
             {isLoggedIn ? 'Sign Out' : 'Log In / Sign Up'}

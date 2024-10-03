@@ -14,22 +14,26 @@ interface CreateCardProps {
 
 const CreateCard: React.FC<CreateCardProps> = ({ item, onClick }) => {
   return (
-    <Card>
+    <Card
+    sx={{ borderRadius: 5 }} // make card more round
+    >
+      
       <CardActionArea onClick={() => onClick(item)}>
         
         <CardMedia
           component="img"
-          height="140" // You can adjust the height as needed
-          image={item.image || noImage} // Use the item image or fallback to default
-          alt={item.name} // Optional: Add alt text for accessibility
+          height="180" 
+          image={item.image || noImage} 
+          alt={item.name} 
         />
         <CardContent>
           <Typography variant="h5" component="div">
             {item.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+
+          {/* <Typography variant="body2" color="text.secondary">
             {item.description}
-          </Typography>
+          </Typography> */}
           <Typography variant="h6" color="text.primary">
             ${item.price.toFixed(2)}
           </Typography>

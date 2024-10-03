@@ -28,8 +28,14 @@ const BottomBar: React.FC = () => {
   const checkoutId = checkoutOpen ? 'checkout-popover' : undefined;
 
   return (
-    <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, backgroundColor: '#000000' }}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, backgroundColor: '#000000',height: '100px' }}>
+      <Toolbar sx={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center'
+
+      }}
+      >
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'right' }}>
         <Typography variant="h6" component="div">
             {isLoggedIn ? `Welcome, ${username}, you have ${points} points` : 'Log in to earn points!'} 

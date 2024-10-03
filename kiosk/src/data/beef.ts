@@ -4,7 +4,7 @@ export const beef: MenuItem[] = [
   {
     id: 1,
     name: 'Burger',
-    description: 'A classic beef burger with lettuce, tomato, and pickles.',
+    description: 'Classic beef burger with lettuce, tomato, and pickles.',
     category: 'beef',
     subcategory: 'sandwich',
     price: 8.99,
@@ -15,7 +15,7 @@ export const beef: MenuItem[] = [
   {
     id: 2,
     name: 'Cheeseburger',
-    description: 'A beef burger with melted cheddar cheese.',
+    description: 'Beef burger with melted cheddar cheese.',
     category: 'beef',
     subcategory: 'sandwich',
     price: 9.49,
@@ -26,7 +26,7 @@ export const beef: MenuItem[] = [
   {
     id: 3,
     name: 'Double Cheese Burger',
-    description: 'A double beef patty burger with double cheddar cheese.',
+    description: 'Double beef patty burger with double cheddar cheese.',
     category: 'beef',
     subcategory: 'sandwich',
     price: 10.99,
@@ -37,7 +37,7 @@ export const beef: MenuItem[] = [
   {
     id: 4,
     name: 'Big Angus',
-    description: 'A hearty Angus beef burger with bacon and BBQ sauce.',
+    description: 'Hearty Angus beef burger with bacon and BBQ sauce.',
     category: 'beef',
     subcategory: 'sandwich',
     price: 11.49,
@@ -48,7 +48,7 @@ export const beef: MenuItem[] = [
   {
     id: 5,
     name: 'Texas BBQ',
-    description: 'A spicy beef burger with BBQ sauce and jalapeños.',
+    description: 'Spicy beef burger with BBQ sauce and jalapeños.',
     category: 'beef',
     subcategory: 'sandwich',
     price: 10.49,

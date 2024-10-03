@@ -39,11 +39,14 @@ const Homepage = () => {
             <Box sx={{ height: '20%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Button
                     variant='contained'
-                    color='primary'
+                    color='secondary'
                     onClick={goToPage2}
                     sx={{ width: '100%', height: '100%' }} 
                 >
+                    <Typography variant='h3' align='center' >
                     Click to Start
+                    </Typography>
+                   
                 </Button>
             </Box>
         </Box>

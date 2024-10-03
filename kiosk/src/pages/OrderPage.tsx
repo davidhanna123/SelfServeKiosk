@@ -18,9 +18,11 @@ const OrderPage: React.FC = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <NavBar />
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+      <Box sx={{ display: 'flex', flexGrow: 1 }}> 
         <Sidebar onCategorySelect={handleCategorySelect} />
+        
         <OrderPageMain selectedCategory={selectedCategory} />
+        
       </Box>
       <BottomBar />
     </Box>

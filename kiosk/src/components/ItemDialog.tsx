@@ -6,13 +6,15 @@ import {
   DialogActions,
   Button,
   Typography,
-  Box
+  Box,
+  CardMedia
 } from '@mui/material';
 import { MenuItem, SubItem } from '../data/menuInterfaces';
 import { subItems } from '../data/subItems';
 import FlavorOption from './FlavorOption';
 import ExtraOption from './ExtraOption';
 import { useCart } from '../context/CartContext';
+import noImage from '../images/No_Image_Available.jpg';
 
 interface ItemDialogProps {
   open: boolean;
@@ -113,7 +115,17 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
   });
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm" sx={{ borderRadius: 10 }}>
+      <CardMedia
+      component="img"
+      height="200"
+      image={selectedItem.image || noImage} 
+      alt={selectedItem.name}
+      sx={{  
+        objectFit: 'contain',  
+        width: '100%' 
+        }} 
+      />
       <DialogTitle>{selectedItem.name}</DialogTitle>
       <DialogContent>
         <Typography variant="body1" gutterBottom>

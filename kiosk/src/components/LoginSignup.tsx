@@ -145,7 +145,7 @@ function LoginSignup({ isOpen, closeFunction }: DialogPropsInterface) {
                     edge="end"
                     onClick={handleClose}
                     aria-label="close"
-                    style={{ position: 'absolute', right: 8, top: 8 }}
+                    style={{ position: 'absolute', right: 15, top: 8 }}
                 >
                     <CloseIcon />
                 </IconButton>

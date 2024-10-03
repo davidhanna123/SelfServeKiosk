@@ -1,16 +1,16 @@
 import { MenuItem } from './menuInterfaces';
 
 export const sides: MenuItem[] = [
-  // None
+  
   {
-    id: 43, // Continue ID from drinks items
+    id: 43, 
     name: 'Fries',
     description: 'Crispy and golden French fries.',
     category: 'sides',
     subcategory: 'none',
     price: 1.99,
     calories: 300,
-    image: 'fries.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-fries-medium:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -21,7 +21,7 @@ export const sides: MenuItem[] = [
     subcategory: 'none',
     price: 3.49,
     calories: 500,
-    image: 'loaded_fries.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-spicy-crispy-buffalo-poutine:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -32,7 +32,7 @@ export const sides: MenuItem[] = [
     subcategory: 'none',
     price: 3.99,
     calories: 550,
-    image: 'poutine.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-poutine:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   // Sandwich
@@ -44,7 +44,7 @@ export const sides: MenuItem[] = [
     subcategory: 'sandwich',
     price: 4.99,
     calories: 400,
-    image: 'grilled_chicken_wrap.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Grilled-Chicken-Wrap:product-header-desktop?wid=830&hei=456&dpr=off',
     toppings: []
   },
   {
@@ -55,7 +55,7 @@ export const sides: MenuItem[] = [
     subcategory: 'sandwich',
     price: 4.99,
     calories: 450,
-    image: 'crispy_chicken_wrap.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-chickenbacon-mcwrap-grilled:nutrition-calculator-tile',
     toppings: []
   }
 ];

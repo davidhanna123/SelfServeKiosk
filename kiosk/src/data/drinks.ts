@@ -10,7 +10,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'coffee',
     price: 2.49,
     calories: 5,
-    image: 'premium_roast_coffee.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-coffee:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -21,7 +21,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'coffee',
     price: 2.49,
     calories: 5,
-    image: 'premium_roast_decaf_coffee.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-coffee:nutrition-calculator-tile',
     toppings: []
   },
   // Iced Coffee
@@ -33,7 +33,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'iced coffee',
     price: 2.99,
     calories: 100,
-    image: 'regular_iced_coffee.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-cold-brew-cream-1:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -44,7 +44,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'iced coffee',
     price: 3.49,
     calories: 120,
-    image: 'caramel_iced_coffee.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-caramel-cold-brew-1:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -55,7 +55,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'iced coffee',
     price: 3.49,
     calories: 110,
-    image: 'vanilla_iced_coffee.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-french-vanilla-cold-brew-1:nutrition-calculator-tile',
     toppings: []
   },
   // Fountain Drink
@@ -67,7 +67,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 1.99,
     calories: 150,
-    image: 'coke.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-coca-cola:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -78,7 +78,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 1.99,
     calories: 0,
-    image: 'diet_coke.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-coca-cola-zero:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -89,20 +89,10 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 1.99,
     calories: 140,
-    image: 'sprite.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-sprite:nutrition-calculator-tile',
     toppings: []
   },
-  {
-    id: 36,
-    name: 'Fanta',
-    description: 'Fruit-flavored soda with a bold taste.',
-    category: 'drinks',
-    subcategory: 'fountain drink',
-    price: 1.99,
-    calories: 160,
-    image: 'fanta.jpg',
-    toppings: []
-  },
+  
   {
     id: 37,
     name: 'Orange Juice',
@@ -111,7 +101,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 2.49,
     calories: 120,
-    image: 'orange_juice.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-orange-juice-1:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -122,7 +112,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 2.49,
     calories: 110,
-    image: 'apple_juice.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-apple-juice:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -133,7 +123,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'fountain drink',
     price: 1.99,
     calories: 70,
-    image: 'iced_tea.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-nestea-iced-tea:nutrition-calculator-tile',
     toppings: []
   },
   // Shake
@@ -145,7 +135,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'shakes',
     price: 3.99,
     calories: 350,
-    image: 'vanilla_shake.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-vanilla-milkshake-1:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -156,7 +146,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'shakes',
     price: 3.99,
     calories: 400,
-    image: 'chocolate_shake.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-chocolate-milkshake-1:nutrition-calculator-tile',
     toppings: []
   },
   {
@@ -167,7 +157,7 @@ export const drinks: MenuItem[] = [
     subcategory: 'shakes',
     price: 3.99,
     calories: 360,
-    image: 'strawberry_shake.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-strawberry-milkshake-1:nutrition-calculator-tile',
     toppings: []
   }
 ];

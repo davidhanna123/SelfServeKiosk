@@ -10,7 +10,7 @@ export const condiments: MenuItem[] = [
     subcategory: 'none',
     price: 0.00,  // Free
     calories: 20,
-    image: 'ketchup.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Tangy-Tomato-Dip-1:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -21,7 +21,7 @@ export const condiments: MenuItem[] = [
     subcategory: 'none',
     price: 0.00,  // Free
     calories: 15,
-    image: 'mustard.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Butter-Portion:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -32,7 +32,7 @@ export const condiments: MenuItem[] = [
     subcategory: 'none',
     price: 0.69,
     calories: 30,
-    image: 'bbq-sauce.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-BBQ-Dip-30g-5:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -43,7 +43,7 @@ export const condiments: MenuItem[] = [
     subcategory: 'none',
     price: 0.69,
     calories: 25,
-    image: 'buffalo-sauce.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Sweet-Chilli-Dip-may-promo:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   },
   {
@@ -54,7 +54,7 @@ export const condiments: MenuItem[] = [
     subcategory: 'none',
     price: 0.79,
     calories: 50,
-    image: 'gravy.jpg',
+    image: 'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Balsamic-Dressing-30g:product-header-desktop?wid=829&hei=455&dpr=off',
     toppings: []
   }
 ];
