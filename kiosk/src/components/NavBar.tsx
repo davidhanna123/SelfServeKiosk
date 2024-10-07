@@ -10,13 +10,13 @@ const NavBar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleAuthAction = () => {
     if (isLoggedIn) {
-      logout(); // Call logout when the user is logged in
+      logout(); 
     } else {
       setIsDialogOpen(true);
     }
   };
   const handleCloseDialog = () => {
-    setIsDialogOpen(false); // Close the dialog
+    setIsDialogOpen(false); 
   };
   
  //'#000000'

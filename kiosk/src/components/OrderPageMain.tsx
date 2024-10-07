@@ -1,27 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CreateCard from './CreateCard';
 import ItemDialog from './ItemDialog';
-import { MenuItem, SubItem } from '../data/menuInterfaces';
-import {beef} from '../data/beef';
-import {chicken} from '../data/chicken';
-import {dessert} from '../data/dessert';
-import {drinks} from '../data/drinks';
-import {sides} from '../data/sides';
+import { MenuItem } from '../data/menuInterfaces';
+import { beef } from '../data/beef';
+import { chicken } from '../data/chicken';
+import { dessert } from '../data/dessert';
+import { drinks } from '../data/drinks';
+import { sides } from '../data/sides';
 import { condiments } from '../data/condiments';
-
-
 
 interface OrderPageMainProps {
   selectedCategory: string | null;
 }
 
-
 const OrderPageMainContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
-  //backgroundColor: 'lightgrey',
   width: 'calc(100vw - 180px)',
   top: '64px', 
   bottom: '64px', // BottomBar height
@@ -67,26 +62,31 @@ const OrderPageMain: React.FC<OrderPageMainProps> = ({ selectedCategory }) => {
     setSelectedItem(null);
   };
 
-
   return (
     <OrderPageMainContainer>
-     
       {selectedCategory && (
         <Box sx={{ flexGrow: 1, padding: '16px' }}>
-          
-          <Grid container spacing={2}>
-            {items.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id}>
-                <CreateCard item={item} onClick={handleCardClick} />
+          {selectedCategory === 'Home' ? (
+            <Typography variant="h2" align="left" color='white'>
+              More Coming Soon...
+            </Typography>
+            
+          ) : (
+            <>
+              <Grid container spacing={2}>
+                {items.map((item) => (
+                  <Grid item xs={12} sm={6} md={4} key={item.id}>
+                    <CreateCard item={item} onClick={handleCardClick} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-          
-          <ItemDialog
-            open={dialogOpen}
-            selectedItem={selectedItem}
-            onClose={handleCloseDialog}
-          />
+              <ItemDialog
+                open={dialogOpen}
+                selectedItem={selectedItem}
+                onClose={handleCloseDialog}
+              />
+            </>
+          )}
         </Box>
       )}
     </OrderPageMainContainer>

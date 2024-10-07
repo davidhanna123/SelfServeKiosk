@@ -37,7 +37,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         );
       }
 
-      // Otherwise, add new item with quantity 1
+      
       return [...prevCart, { ...newItem, quantity: 1 }];
     });
   };

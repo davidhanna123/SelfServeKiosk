@@ -16,7 +16,8 @@ interface ExtraOptionProps {
 
 const ExtraOption: React.FC<ExtraOptionProps> = ({ name, extraPrice, extraCalories, isSelected, onAdd, onRemove }) => {
   const theme = useTheme(); 
-
+//sx={{ color: theme.palette.primary.dark }}
+//sx={{ color: theme.palette.primary.light }}
   return (
     <Box display="flex" alignItems="center">
       <Typography variant="body2" style={{ flexGrow: 1 }}>
@@ -25,12 +26,12 @@ const ExtraOption: React.FC<ExtraOptionProps> = ({ name, extraPrice, extraCalori
         {extraCalories > 0 && ` . +${extraCalories} cal`}
       </Typography>
       {isSelected ? (
-        <IconButton sx={{ color: theme.palette.primary.light }} onClick={onRemove}>
-          <RemoveCircleIcon sx={{ fontSize: '2rem' }}/>
+        <IconButton  onClick={onRemove}>
+          <RemoveCircleIcon fontSize="large" sx={{ color: theme.palette.primary.light }}/>
         </IconButton>
       ) : (
-        <IconButton sx={{ color: theme.palette.primary.dark }} onClick={onAdd}>
-          <AddCircleIcon sx={{ fontSize: '2rem' }}/>
+        <IconButton  onClick={onAdd}>
+          <AddCircleIcon fontSize="large" color ="success"/>
         </IconButton>
       )}
     </Box>

@@ -15,7 +15,7 @@ import FlavorOption from './FlavorOption';
 import ExtraOption from './ExtraOption';
 import { useCart } from '../context/CartContext';
 import noImage from '../images/No_Image_Available.jpg';
-
+import QuantityBox from './QuantityBox';
 
 interface ItemDialogProps {
   open: boolean;
@@ -27,12 +27,13 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
   const [selectedOptions, setSelectedOptions] = useState<Record<number, string>>({});
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
   const { addItemToCart } = useCart();
-
+  //const [quantity, setQuantity] = useState<number>(1);
   
   useEffect(() => {
     if (open) {
       setSelectedOptions({});
       setSelectedExtras(new Set());
+      //setQuantity(1);
     }
   }, [open]);
 
@@ -141,7 +142,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         alt={selectedItem.name}
         sx={{  
           objectFit: 'contain',  
-          width: '100%' 
+          width: '100%',
         }} 
       />
       <DialogTitle>{selectedItem.name}</DialogTitle>

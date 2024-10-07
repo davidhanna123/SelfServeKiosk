@@ -33,7 +33,7 @@ const FlavorOption: React.FC<FlavorOptionProps> = ({ name, options, selectedValu
                 sx={{
                   color: theme.palette.secondary.contrastText, 
                   '&.Mui-checked': {
-                    color: theme.palette.primary.dark, 
+                    color: "green", 
                   },
                 }}
               />

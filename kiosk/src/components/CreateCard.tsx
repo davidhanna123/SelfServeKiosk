@@ -15,7 +15,7 @@ interface CreateCardProps {
 const CreateCard: React.FC<CreateCardProps> = ({ item, onClick }) => {
   return (
     <Card
-    sx={{ borderRadius: 5 }} // make card more round
+    sx={{ borderRadius: 5 }} 
     >
       
       <CardActionArea onClick={() => onClick(item)}>

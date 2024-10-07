@@ -15,6 +15,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
+
+
 interface CartPopoverProps {
   anchorEl: HTMLButtonElement | null;
   open: boolean;
@@ -30,7 +32,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleRemoveItem = (id: string, notes: string) => {
-    removeItemFromCart(id, notes); // Remove item by id and notes
+    removeItemFromCart(id, notes); 
   };
 
   const navigate = useNavigate();
@@ -86,12 +88,21 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
               {cartItems.map((item, index) => (
                 <React.Fragment key={`${item.id}-${index}`}>
                   <ListItem>
-                    <ListItemText
-                      primary={`${item.name} (x${item.quantity})`}
-                      secondary={`Notes: ${item.notes || 'None'}, Price: $${(item.price * item.quantity).toFixed(
-                        2
-                      )}, Calories: ${(item.calories * item.quantity)}`}
-                    />
+                  <ListItemText
+                    primary={`${item.name}${item.quantity > 1 ? ` (x${item.quantity})` : ''}`}  
+                    secondary={
+                    <>
+                  <Typography component="span" variant="body2">
+                  Price: ${item.price * item.quantity}, Calories: {item.calories * item.quantity}
+                  </Typography>
+                  {item.notes && (
+                  <Typography component="span" variant="body2" display="block">
+                    Notes: {item.notes}
+                  </Typography>
+                  )}
+                   </>
+                  }
+                  />               
                     <ListItemSecondaryAction>
                       <IconButton
                         edge="end"
