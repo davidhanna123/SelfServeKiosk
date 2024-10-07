@@ -27,13 +27,13 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
   const [selectedOptions, setSelectedOptions] = useState<Record<number, string>>({});
   const [selectedExtras, setSelectedExtras] = useState<Set<number>>(new Set());
   const { addItemToCart } = useCart();
-  //const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1);
   
   useEffect(() => {
     if (open) {
       setSelectedOptions({});
       setSelectedExtras(new Set());
-      //setQuantity(1);
+      setQuantity(1);
     }
   }, [open]);
 
@@ -89,9 +89,14 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
     });
   };
 
-  const totalPrice = selectedItem.price + calculateExtraPrice();
-  const calories = selectedItem.calories + calculateExtraCalories();
+  const totalPrice = (selectedItem.price + calculateExtraPrice()) ;
+  const calories = (selectedItem.calories + calculateExtraCalories()) ;
 
+  const handleClose = () => {
+    setSelectedOptions({});
+    setSelectedExtras(new Set());
+    onClose(); 
+  };
   const handleAddToCart = () => {
     const notes = Object.entries(selectedOptions)
       .map(([id, value]) => {
@@ -105,14 +110,17 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
       .filter(note => note)
       .join(', ');
 
-    addItemToCart({
-      id: selectedItem.id.toString(),
-      name: selectedItem.name,
-      price: totalPrice,
-      calories,
-      notes,
-      quantity: 1,
-    });
+      for (let i = 0; i < quantity; i++) {
+        addItemToCart({
+          id: selectedItem.id.toString(),
+          name: selectedItem.name,
+          price: totalPrice,
+          calories,
+          notes,
+          quantity: 1 ,
+        });
+      }
+    
 
     
     handleClose();
@@ -127,14 +135,20 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
   });
 
   
-  const handleClose = () => {
-    setSelectedOptions({});
-    setSelectedExtras(new Set());
-    onClose(); 
-  };
+  
   
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" sx={{ borderRadius: 10 }}>
+    <Dialog 
+      open={open} 
+      onClose={handleClose} 
+      fullWidth 
+      sx={{ 
+        borderRadius: 10, 
+        width: '450px',       
+        maxWidth: '500px',     
+        margin: 'auto',      
+      }} 
+    >
       <CardMedia
         component="img"
         height="200"
@@ -151,10 +165,10 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
           {selectedItem.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Price: ${totalPrice.toFixed(2)}
+          Price: ${(totalPrice * quantity).toFixed(2)} {/* Multiply totalPrice by quantity */}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Calories: {calories}
+          Calories: {calories * quantity} {/* Multiply calories by quantity */}
         </Typography>
 
         {Object.keys(groupedSubItems).map((type) => (
@@ -189,19 +203,34 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
           </Box>
         ))}
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} sx={{ color: "#000000" }}>
-          Close
-        </Button>
-        <Button
-          onClick={handleAddToCart}
-          color="secondary"
-          variant="contained"
-          disabled={!flavorOptionsFilled} // all flavor options must be selected
-        >
-          Add to Cart
-        </Button>
+      <DialogActions sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>
+          <QuantityBox 
+            quantity={quantity} 
+            onIncrease={() => setQuantity((prev) => prev + 1)} 
+            onDecrease={() => setQuantity((prev) => Math.max(1, prev - 1))} 
+          />
+        </Box>
+
+        <Box >
+          <Button onClick={handleClose} sx={{ color: "#000000", borderRadius: 2, minWidth: '175px', marginRight: '5px' }}>
+            Close    
+          </Button>
+
+          <Button
+            onClick={handleAddToCart}
+            color="secondary"
+            variant="contained"
+            disabled={!flavorOptionsFilled} 
+            sx={{ borderRadius: 2, minWidth: '175px' }}
+          >
+            Add to Cart
+          </Button>
+        </Box>
       </DialogActions>
+
+
+
     </Dialog>
   );
 };
