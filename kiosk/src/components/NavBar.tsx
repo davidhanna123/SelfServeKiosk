@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 import LoginSignup from './LoginSignup';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
 
 const NavBar = () => {
-  
-  const { isLoggedIn, username, login, logout } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  
   const handleAuthAction = () => {
     if (isLoggedIn) {
       logout(); 
@@ -15,12 +15,11 @@ const NavBar = () => {
       setIsDialogOpen(true);
     }
   };
+  
   const handleCloseDialog = () => {
     setIsDialogOpen(false); 
   };
-  
- //'#000000'
- //(theme) => theme.palette.background.default
+
   return (
     <AppBar position="fixed" sx={{ backgroundColor: '#000000', height: '70px' }}>
       <Toolbar
@@ -30,16 +29,16 @@ const NavBar = () => {
           alignItems: 'center'
         }}
       >
-        
-        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-          <Typography variant="h6" component="div">
-            Kiosk
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          
+        <FastfoodIcon color="secondary" sx={{ marginRight: 1 }} fontSize="large" />
+          <Typography variant="h4" color="secondary"> 
+            Self-Serve Kiosk
           </Typography>
         </Box>
         
-       
         <Box>
-          <Button color="secondary" variant='contained'  onClick={handleAuthAction}>
+          <Button color="secondary" variant='contained' onClick={handleAuthAction}>
             {isLoggedIn ? 'Sign Out' : 'Log In / Sign Up'}
           </Button>
         </Box>

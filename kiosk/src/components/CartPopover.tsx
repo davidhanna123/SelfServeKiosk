@@ -9,7 +9,8 @@ import {
   ListItemSecondaryAction,
   IconButton,
   Divider,
-  Button
+  Button,
+  Alert
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart } from '../context/CartContext';
@@ -43,7 +44,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
       navigate('/PaymentPage'); 
     }
     else{
-      setErrorMessage('Please add more items to cart');
+      setErrorMessage('Please add more items');
     }
   };
 
@@ -59,7 +60,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
       anchorEl={anchorEl}
       onClose={handlePopoverClose}
       anchorOrigin={{
-        vertical: 'bottom',
+        vertical: 'bottom', // height above
         horizontal: 'left',
       }}
       transformOrigin={{
@@ -72,6 +73,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
           maxWidth: '400px',
           maxHeight: '500px',
           overflowY: 'auto',
+          marginTop: '-60px', // adjust height
         },
       }}
     >
@@ -93,7 +95,7 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
                     secondary={
                     <>
                   <Typography component="span" variant="body2">
-                  Price: ${item.price * item.quantity}, Calories: {item.calories * item.quantity}
+                  Price: ${(item.price * item.quantity).toFixed(2)}, Calories: {item.calories * item.quantity}
                   </Typography>
                   {item.notes && (
                   <Typography component="span" variant="body2" display="block">
@@ -128,17 +130,16 @@ const CartPopover: React.FC<CartPopoverProps> = ({ anchorEl, open, onClose, id }
             </Box>
 
             <Box mt={2} display="flex" justifyContent="flex-end" >
+            {errorMessage && (
+             <Alert variant="filled" severity="error" sx={{ marginRight: 1 }}>
+             {errorMessage}
+           </Alert>
+          )}
               <Button onClick={handleCheckout} variant="contained" color="secondary">
                 Checkout
               </Button>
             </Box>
-            <Box mt={2} display="flex" justifyContent="flex-end" >
-              {errorMessage && (
-              <Typography color="error" variant="body2" sx={{ marginRight: '8px' }}>
-              {errorMessage}
-              </Typography>
-              )}
-            </Box>
+            
           </>
         )}
       </Box>

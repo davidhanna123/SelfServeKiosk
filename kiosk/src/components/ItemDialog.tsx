@@ -165,10 +165,10 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
           {selectedItem.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Price: ${(totalPrice * quantity).toFixed(2)} {/* Multiply totalPrice by quantity */}
+          Price: ${(totalPrice * quantity).toFixed(2)} 
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Calories: {calories * quantity} {/* Multiply calories by quantity */}
+          Calories: {calories * quantity} 
         </Typography>
 
         {Object.keys(groupedSubItems).map((type) => (

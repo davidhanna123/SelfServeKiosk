@@ -112,7 +112,10 @@ const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose, total }) =
           {message}
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 9 }}>
-          <FastfoodIcon fontSize="large" />
+        <FastfoodIcon color="secondary" sx={{ marginRight: 1 }} fontSize="large" />
+          <Typography variant="h4" color="secondary"> 
+            Self-Serve Kiosk
+          </Typography>
         </Box>
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'center', paddingBottom: '20px' }}>

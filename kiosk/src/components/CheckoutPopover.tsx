@@ -51,6 +51,7 @@ const CheckoutPopover: React.FC<CheckoutPopoverProps> = ({ anchorEl, open, onClo
           maxWidth: '1100px', 
           height: '30vh', 
           maxHeight: '550px', 
+          marginTop: '-10px',
         },
       }}
     >

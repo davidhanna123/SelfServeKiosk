@@ -40,8 +40,14 @@ const PaymentPage = () => {
       }}
     >
       <Typography variant="h4" sx={{ color: theme.palette.primary.contrastText }} gutterBottom>
-        {isLoggedIn ? `Hello, ${username}! You are earning points today.` : 'Your order:'}
-      </Typography>
+  {isLoggedIn ? (
+    <>
+      Hello, <strong>{username}</strong>! <br /> You are earning points today.
+    </>
+  ) : (
+    'Your Order:'
+  )}
+</Typography>
       
       
       <Box
@@ -52,26 +58,44 @@ const PaymentPage = () => {
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '8px', 
-          overflow: 'hidden', // Prevent overflow in parent Box
+          overflow: 'hidden', 
         }}
       >
-        <List sx={{ overflowY: 'auto', flexGrow: 1 }}> 
-          {cartItems.map((item, index) => (
-            <React.Fragment key={item.id}>
-              <ListItem>
-                <ListItemText
-                primary={`${item.name}${item.quantity > 1 ? ` (x${item.quantity})` : ''}`} 
-                secondary={`${item.notes ? `Notes: ${item.notes}, ` : ''}
-                Price: $${(item.price * item.quantity).toFixed(2)}`} 
-                />
-              </ListItem>
-              {index < cartItems.length - 1 && <Divider />}
-            </React.Fragment>
-          ))}
-        </List>
+        <List sx={{ overflowY: 'auto', flexGrow: 1 }}>
+        {cartItems.map((item, index) => (
+          <React.Fragment key={item.id}>
+            <ListItem>
+              <ListItemText
+                primary={
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    
+                    <Typography variant="body1">
+                      {`${item.name}${item.quantity > 1 ? ` (x${item.quantity})` : ''}`}
+                    </Typography>
+                    
+                    <Typography variant="body1" >
+                      ${item.price.toFixed(2)}
+                    </Typography>
+                  </Box>
+                }
+                secondary={
+                  item.notes ? (
+                    <Typography variant="body2" color="textSecondary">
+                       {item.notes}
+                    </Typography>
+                  ) : null
+                }
+              />
+            </ListItem>
+            {index < cartItems.length - 1 && <Divider />}
+          </React.Fragment>
+        ))}
+      </List>
+
+
 
         
-        <Box textAlign="right" sx={{ padding: 1 }}> 
+        <Box textAlign="right" sx={{ padding: 1, fontWeight: 'bold' }}> 
           <Divider />
           <Typography variant="h6" gutterBottom>
             Total: ${totalPrice.toFixed(2)}

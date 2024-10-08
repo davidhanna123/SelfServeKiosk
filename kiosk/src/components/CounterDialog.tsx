@@ -3,7 +3,7 @@ import { Dialog, DialogContent, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-
+import FastfoodIcon from '@mui/icons-material/Fastfood';
 
 
 interface CounterDialogProps {
@@ -46,6 +46,10 @@ const CounterDialog: React.FC<CounterDialogProps> = ({ open }) => {
         <Typography variant="h6">
           Please pay at the counter. Order Number: {orderNumber}
         </Typography>
+        <FastfoodIcon color="secondary" sx={{ marginRight: 1 }} fontSize="large" />
+          <Typography variant="h4" color="secondary"> 
+            Self-Serve Kiosk
+          </Typography>
       </DialogContent>
     </Dialog>
   );
