@@ -161,7 +161,7 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
       />
       <DialogTitle>{selectedItem.name}</DialogTitle>
       <DialogContent>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" >
           {selectedItem.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -172,12 +172,12 @@ const ItemDialog: React.FC<ItemDialogProps> = ({ open, selectedItem, onClose }) 
         </Typography>
 
         {Object.keys(groupedSubItems).map((type) => (
-          <Box key={type} marginBottom="16px">
-            <Typography variant="h6" gutterBottom>
+          <Box key={type} marginBottom="5px">
+            <Typography variant="h6" gutterBottom marginTop="5px">
               {type.charAt(0).toUpperCase() + type.slice(1)} Options:
             </Typography>
             {groupedSubItems[type].map((subItem) => (
-              <Box key={subItem.id} marginBottom="8px">
+              <Box key={subItem.id} >
                 {subItem.type === 'flavor' ? (
                   <FlavorOption
                     name={subItem.name}

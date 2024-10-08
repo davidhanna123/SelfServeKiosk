@@ -27,7 +27,7 @@ const PaymentPage = () => {
     setDialogType(null);
     setSelection(null);
   };
-  //edit typographies later in theme
+  
   return (
     <Box
       sx={{
@@ -35,7 +35,7 @@ const PaymentPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh', // Full viewport height
+        height: '100vh', 
         textAlign: 'center',
       }}
     >
